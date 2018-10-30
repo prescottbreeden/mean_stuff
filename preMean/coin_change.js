@@ -16,20 +16,29 @@ function minimizeChange(c) {
     c = c % 10
     let nickels = parseInt(c/5)
     c = c % 5
-    return { 'dollars': dollars, 'dimes': dimes, 'nickels': nickels, 'pennies': c }
+
+  return { 
+    dollars: dollars, 
+    dimes: dimes, 
+    nickels: nickels, 
+    pennies: c }
 }
 
 
 function convertToCents(obj) {
   let sum = 0
-  if (obj['dollars']) 
-    sum += obj['dollars']*100
-  if (obj['dimes']) 
-    sum += c['dimes']*10
-  if (obj['nickels']) 
-    sum += obj['nickels']*5
-  if (obj['pennies']) 
-    sum += obj['pennies']
+  if (obj.dollars) 
+    sum += obj.dollars*100
+
+  if (obj.dimes) 
+    sum += c.dimes*10
+
+  if (obj.nickels) 
+    sum += obj.nickels*5
+
+  if (obj.pennies) 
+    sum += obj.pennies
+
   return sum
 }
 
