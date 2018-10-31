@@ -29,9 +29,16 @@ class Chuck {
 var norris = new Chuck();
 console.log('class proto:', norris.__proto__)
 console.log('class proto 2x:', norris.__proto__.__proto__)
+console.log('class proto 3x:', norris.__proto__.__proto__.__proto__)
 
 var array = new Array();
 var arr = [];
 
 console.log('array proto === arr proto: ', array.__proto__ === arr.__proto__)
 console.log('array proto 2x === class proto 2x: ', array.__proto__.__proto__ === norris.__proto__.__proto__)
+
+let cat = new Object();
+let cat2 = {}
+
+let array2 = new Array();
+let array3 = [];
