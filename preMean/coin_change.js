@@ -10,18 +10,18 @@ function coinchange(c) {
 
 
 function minimizeChange(c) {
-    let dollars = parseInt(c/100)
-    c = c % 100
-    let dimes = parseInt(c/10)
-    c = c % 10
-    let nickels = parseInt(c/5)
-    c = c % 5
+  let dollars = parseInt(c/100);
+  c %= 100;
+  let dimes = parseInt(c/10);
+  c %= 10;
+  let nickels = parseInt(c/5);
+  c %= 5;
 
   return { 
     dollars: dollars, 
     dimes: dimes, 
     nickels: nickels, 
-    pennies: c }
+    pennies: c };
 }
 
 
