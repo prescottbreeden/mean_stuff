@@ -34,6 +34,10 @@ console.log('class proto 3x:', norris.__proto__.__proto__.__proto__)
 var array = new Array();
 var arr = [];
 
+Object.prototype.meow = function() {
+  console.log('meow')
+}
+
 console.log('array proto === arr proto: ', array.__proto__ === arr.__proto__)
 console.log('array proto 2x === class proto 2x: ', array.__proto__.__proto__ === norris.__proto__.__proto__)
 
@@ -42,3 +46,5 @@ let cat2 = {}
 
 let array2 = new Array();
 let array3 = [];
+
+array3.meow()
