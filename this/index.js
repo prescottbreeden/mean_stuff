@@ -59,3 +59,21 @@ const cat = {
 }
 
 cat.meow();
+
+console.log('\n\n===================================\n\n')
+
+function meow() {
+  console.log(this)
+}
+
+meow()
+
+console.log('\n\n===================================\n\n')
+
+let bob = () => {
+  console.log(this);
+  console.log(this.__proto__)
+  console.log(this.__proto__.__proto__)
+}
+
+bob();
