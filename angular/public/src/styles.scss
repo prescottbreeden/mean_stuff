@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.class {
+  color: red;
+
+  &__awesome {
+    color: blue;
+
+    &--cool {
+      width: 100%;
+    }
+  }
+}
