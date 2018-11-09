@@ -1,0 +1,35 @@
+<div class="bikes">
+  <h2>{{title}}</h2>
+  <form action="/bikes" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name">
+    <br>
+    <label for="make">Make:</label>
+    <input type="text" name="make" id="make">
+    <br>
+    <label for="price">Price:</label>
+    <input type="text" name="price" id="price">
+    <br>
+    <label for="max_speed">Max Speed:</label>
+    <input type="text" name="max_speed" id="max_speed">
+    <br>
+    <label for="miles">Miles:</label>
+    <input type="text" name="miles" id="miles">
+    <br>
+    <button>Submit</button>
+  </form>
+</div>
+<hr>
+<div class="bikes__list">
+  bike list
+  <div class="bike__item" *ngFor="let bike of bikes">
+    <div class="bikes__item--name">{{ bike.name }}</div>
+  </div>
+</div>
+
+
+
+
+
+
+<router-outlet></router-outlet>

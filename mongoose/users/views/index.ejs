@@ -20,6 +20,9 @@
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+  label {
+    font-size: 1.5rem;
+  }
   .users {
     display: flex;
     justify-content: space-between;
@@ -61,20 +64,17 @@
     <div class="users__email"><%= users[x].email %></div>
     <form 
       class="users__link" 
-      method='get'
       action="/users/<%= users[x]._id %>">
       <button>View</button>
     </form>
     <form 
       class="users__link" 
-      method='get'
       action="/edit/user/<%= users[x]._id %>">
       <button>Edit</button>
     </form>
     <form 
       class="users__link" 
-      method='delete'
-      action="/users/<%= users[x]._id %>">
+      action="/users/delete/<%= users[x]._id %>">
       <button>Delete</button>
     </form>
   </div>
