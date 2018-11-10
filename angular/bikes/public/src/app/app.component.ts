@@ -6,9 +6,18 @@ import { HttpService } from './http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'Why...';
+export class AppComponent implements OnInit {
+  title = 'Bikes';
   bikes: any = [];
+
+  updateInfo = {
+    id: String,
+    name: String,
+    make: String,
+    price: Number,
+    max_speed: Number,
+    miles: Number
+  };
 
   constructor(private _http: HttpService) { }
 
@@ -17,14 +26,19 @@ export class AppComponent {
   }
 
   getAllBikes() {
-    this._http.allBikes().subscribe(data => {
+    this._http.getAll().subscribe(data => {
       this.bikes = data;
       console.log(this.bikes);
     });
   }
 
-  // getAllBikes() {
-  //   this.bikes = this._http.allBikes();
-  // }
+  updateBike(bike) {
+    this.updateInfo.id = bike._id;
+    this.updateInfo.name = bike.name;
+    this.updateInfo.make = bike.make;
+    this.updateInfo.price = bike.price;
+    this.updateInfo.max_speed = bike.max_speed;
+    this.updateInfo.miles = bike.miles;
+  }
 
 }

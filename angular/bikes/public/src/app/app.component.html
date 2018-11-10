@@ -1,29 +1,82 @@
 <div class="bikes">
   <h2>{{title}}</h2>
-  <form action="/bikes" method="post">
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name">
-    <br>
-    <label for="make">Make:</label>
-    <input type="text" name="make" id="make">
-    <br>
-    <label for="price">Price:</label>
-    <input type="text" name="price" id="price">
-    <br>
-    <label for="max_speed">Max Speed:</label>
-    <input type="text" name="max_speed" id="max_speed">
-    <br>
-    <label for="miles">Miles:</label>
-    <input type="text" name="miles" id="miles">
-    <br>
+  <form action="/bikes" method="post" class="bikes__form">
+    <div class="bikes__form-row">
+      <label 
+        class="bikes__label" 
+        for="name"> Name:
+      </label>
+      <input 
+        [(ngModel)]="updateInfo.name"
+        class="bikes__input" 
+        type="text" 
+        name="name" 
+        id="name">
+    </div>
+    <div class="bikes__form-row">
+      <label 
+        class="bikes__label" 
+        for="make"> Make:
+      </label>
+      <input 
+        [(ngModel)]="updateInfo.make"
+        class="bikes__input" 
+        type="text" 
+        name="make" 
+        id="make">
+    </div>
+    <div class="bikes__form-row">
+      <label 
+        class="bikes__label" 
+        for="price"> Price:
+      </label>
+      <input 
+        [(ngModel)]="updateInfo.price"
+        class="bikes__input" 
+        type="text" 
+        name="price" 
+        id="price">
+    </div>
+    <div class="bikes__form-row">
+      <label 
+        class="bikes__label" 
+        for="max_speed"> Max Speed:
+      </label>
+      <input 
+        [(ngModel)]="updateInfo.max_speed"
+        class="bikes__input" 
+        type="text" 
+        name="max_speed" 
+        id="max_speed">
+    </div>
+    <div class="bikes__form-row">
+      <label 
+        class="bikes__label" 
+        for="miles"> Miles:
+      </label>
+      <input 
+        [(ngModel)]="updateInfo.miles"
+        class="bikes__input" 
+        type="text" 
+        name="miles" 
+        id="miles">
+    </div>
     <button>Submit</button>
   </form>
 </div>
 <hr>
 <div class="bikes__list">
-  bike list
+  <div class="bike__item">
+    <div class="bikes__item--name">name</div>
+    <div class="bikes__item--name">make</div>
+    <div class="bikes__item--name">max speed</div>
+    <div class="bikes__item--name">price</div>
+  </div>
   <div class="bike__item" *ngFor="let bike of bikes">
     <div class="bikes__item--name">{{ bike.name }}</div>
+    <div class="bikes__item--name">{{ bike.make }}</div>
+    <div class="bikes__item--name">{{ bike.max_speed }}</div>
+    <div class="bikes__item--name">{{ bike.price }}</div>
   </div>
 </div>
 
