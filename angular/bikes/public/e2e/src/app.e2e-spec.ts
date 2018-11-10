@@ -7,8 +7,12 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display app name', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to public!');
+    expect(page.getParagraphText()).toEqual('BikesRus');
+  });
+
+  it('should display complete inventory', () => {
+    expect(page.getAllBikes());
   });
 });

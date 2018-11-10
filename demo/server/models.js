@@ -1,5 +1,5 @@
+// Example Mongoose ORM for creating MongoDB Collection
 const mongoose = require('mongoose');
-
 mongoose.connect('mongodb://localhost:27017/demo', { useNewUrlParser: true})
 
 const UserSchema = new mongoose.Schema({
@@ -7,7 +7,5 @@ const UserSchema = new mongoose.Schema({
   email: {type: String}
 }, {timestamps: true})
 
-mongoose.model('User', UserSchema);
-const User = mongoose.model('User');
+module.exports = mongoose.model('User', UserSchema);
 
-module.exports = User;

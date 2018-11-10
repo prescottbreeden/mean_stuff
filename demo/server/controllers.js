@@ -1,12 +1,7 @@
 const User = require('./models');
 
-module.exports = {
 
-  home: function(req, res) {
-    User.find({})
-      .then(usersData => res.render('index', {users: usersData}))
-      .catch(err => res.json(err))
-  },
+module.exports = {
 
   getAll: function(req, res) {
     User.find({})
@@ -21,48 +16,85 @@ module.exports = {
       .catch(err => res.json(err))
   },
   
-  addNew: function(req, res) {
+  createNew: function(req, res) {
     const DATA = req.body;
 
-    User.find({ email: DATA.email })
-      .then(data_from_db => {
-        if (data_from_db.length > 0) { throw "User email already exists" }
-        else { return User.find({ name: DATA.name }) }
-      })
-      .then(data_from_db => {
-        if (data_from_db.length > 0) { throw "User name already exists" }
-        else { return User.create(DATA) }
-      })
-      .then((user) => res.json(user))
+    User.create(DATA)
+      .then((new_object) => res.json(new_object))
       .catch(err => res.json(err))
   },
   
-  updateUser: function(req, res) {
+  updateOne: function(req, res) {
     const DATA = req.body;
     const ID = req.params.id;
 
     User.findByIdAndUpdate(ID, DATA)
       .then(() => res.json("success"))
       .catch(err => res.json(err))
-
-    // User.find({ _id: ID })
-    //   .then(user => {
-    //     user.name = DATA.name;
-    //     user.email = DATA.email;
-    //     return user.save();
-    //   })
-    //   .then((user) => res.json(user))
-    //   .catch(err => res.json(err))
   },
   
-  deleteUser: function(req, res) {
+  deleteOne: function(req, res) {
     const ID = req.params.id;
     User.find({ _id: ID }).remove()
-      .then(() => res.json({status: "success"}))
+      .then(() => res.json("success"))
       .catch(err => res.json(err))
   },
   
   error: function(req, res) {
-    res.json("Error 420: you're a towel!")
+    res.json("Error 418: I'm a Teapot!")
   }
+}
+
+
+// =============================================== //
+//       EXAMPLE METHODS RETURNING PROMISES        //
+// =============================================== //
+/*
+ 
+*** "throw" is a method in javascript to create custom error messages ***
+
+*/
+// example with chaining promises for validations
+function validateAndCreate(req, res) {
+  const DATA = req.body;
+
+  User.find({ email: DATA.email })
+    .then(data_from_db => {
+      if (data_from_db.length > 0) { throw "User email already exists" }
+      else { return User.find({ name: DATA.name }) }
+    })
+    .then(data_from_db => {
+      if (data_from_db.length > 0) { throw "User name already exists" }
+      else { return User.create(DATA) }
+    })
+    .then((user) => res.json(user))
+    .catch(err => res.json(err))
+}
+
+// example with long form to access specific properties during update
+function updateOneAccessingProperties(req, res) {
+  const DATA = req.body;
+  const ID = req.params.id;
+
+  User.findOne({ _id: ID })
+    .then(user => {
+      user.name = DATA.name;
+      user.email = DATA.email;
+      return user.save();
+    })
+    .then(() => res.json("success"))
+    .catch(err => res.json(err))
+}
+
+// example where update returns the new object
+function updateOneAndReturn(req, res) {
+  const DATA = req.body;
+  const ID = req.params.id;
+
+  User.findByIdAndUpdate(ID, DATA)
+    .then(() => {
+      return User.findOne({ _id: ID })
+    })
+    .then((user => res.json(user)))
+    .catch(err => res.json(err))
 }

@@ -7,16 +7,16 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Bikes';
+  title = 'BikesRus';
   bikes: any = [];
 
   updateInfo = {
-    id: String,
-    name: String,
-    make: String,
-    price: Number,
-    max_speed: Number,
-    miles: Number
+    id: '',
+    name: '',
+    make: '',
+    price: 0,
+    max_speed: 0,
+    miles: 0
   };
 
   constructor(private _http: HttpService) { }
