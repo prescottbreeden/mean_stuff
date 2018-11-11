@@ -1,2 +1,5 @@
-<h1>Welcome to the wall</h1>
-<app-create-posts></app-create-posts>
+<app-header></app-header>
+<main>
+  <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
+  <app-post-list [posts]="storedPosts"></app-post-list>
+</main>
