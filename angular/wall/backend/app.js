@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const Post = require('./models/post');
+const Posts = require('./models/post');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,31 +21,24 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/posts', (req, res, next) => {
-  Post.find()
-    .then(data => res.status(200).json({
-      message: 'posts fetched successfully',
-      posts: data
-    }))
-    .catch(err => res.status(418).json({
-      message: 'I can\'t make coffee... I\'m a teapot!',
-      posts: err
-    }))
+  Posts.find()
+    .then(data => res.status(200).json(data))
+    .catch(err => res.status(418).json(err))
 });
 
-app.post('/api/posts', (req, res, next) => {
+app.post('/api/posts', (req, res) => {
   const DATA = req.body;
-  Post.create(DATA)
-  .then(newPost => {
-    res.status(201).json({
-      message: 'Post added successfully',
-      posts: newPost
-    });
-  })
-  .catch(err => res.status(418).json({
-    message: 'I can\'t make coffee... I\'m a teapot!',
-    posts: err
-  }))
-})
+  Posts.create(DATA)
+  .then(newPost => res.status(201).json(newPost) )
+  .catch(err => res.status(418).json(err))
+});
+
+app.delete('/api/posts/:id', (req, res) => {
+  const ID = req.params.id;
+  Posts.deleteOne({ _id: ID })
+    .then((result) => { console.log(result); })
+    .catch(err => res.status(418).json(err))
+});
 
 
 module.exports = app;
