@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+const Post = require('./models/post');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -19,31 +21,31 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/posts', (req, res, next) => {
-  const posts = [
-    { id: 'fad134145i',
-      title: 'First server-side post',
-      content: 'this is coming from the server...' 
-    },
-    { id: 'z2gh34195i',
-      title: 'Second server-side post',
-      content: 'this is coming from the server...' 
-    }
-  ];
-  res.status(200).json({
-    message: 'Posts fetched successfully!',
-    posts: posts
-  });
+  Post.find()
+    .then(data => res.status(200).json({
+      message: 'posts fetched successfully',
+      posts: data
+    }))
+    .catch(err => res.status(418).json({
+      message: 'I can\'t make coffee... I\'m a teapot!',
+      posts: err
+    }))
 });
 
 app.post('/api/posts', (req, res, next) => {
-  const post = req.body;
-  console.log(post);
-  res.status(201).json({
-    message: 'Post added successfully',
-    posts: post
-  });
-});
-
+  const DATA = req.body;
+  Post.create(DATA)
+  .then(newPost => {
+    res.status(201).json({
+      message: 'Post added successfully',
+      posts: newPost
+    });
+  })
+  .catch(err => res.status(418).json({
+    message: 'I can\'t make coffee... I\'m a teapot!',
+    posts: err
+  }))
+})
 
 
 module.exports = app;
