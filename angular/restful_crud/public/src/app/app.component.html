@@ -1,0 +1,50 @@
+<h2>New Task</h2>
+<form (submit)="onSubmit()"> 
+  Title: 
+  <input 
+    type="text" 
+    name="newTask.title"
+    [(ngModel)]="newTask.title">
+  <br>
+  Description: 
+  <input 
+    type="text" 
+    name="newTask.description"
+    [(ngModel)]="newTask.description">
+  <br>
+  <button>Submit</button>
+</form>
+<hr>
+<div *ngIf="edit">
+  <h2>Edit Task:</h2>
+  <form (submit)="onEdit()">
+    Title: 
+    <input 
+      type="text" 
+      name="editTask.title"
+      [(ngModel)]="editTask.title">
+    <br>
+    Description: 
+    <input 
+      type="text" 
+      name="editTask.description"
+      [(ngModel)]="editTask.description">
+    <br>
+    <button>Submit</button>
+    <div *ngIf="errors.length" >
+      <div *ngFor="let error of errors">
+        {{ error }} 
+      </div>
+    </div>
+  </form>
+</div>
+<hr>
+<h2>Task List</h2>
+<div *ngFor="let task of tasks">
+  <h4>Task:</h4>
+  <p>Task title: {{task.title}}</p>
+  <p>Task desc: {{task.description}}</p>
+  <button (click)="editButton(task)">Edit</button>
+  <button (click)="deleteButton(task)">DESTORY</button>
+  <hr>
+</div>
