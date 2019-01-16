@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What the Func</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="assets/libs/dist/paper-full.js"></script>
+	<script type="text/javascript" src="assets/libs/dist/howler.core.min.js"></script>
+	<script type="text/paperscript" canvas="myCanvas" src="./js/tabsound.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+            <canvas id="myCanvas" resize></canvas>
+        <div class="content side-bar">
+            <div class="center-text">
+                <h1>What the Func?!</h1>
+                <h2>Players Online</h2>
+            </div>
+            <div class="horizontal-line"></div>
+            <div class="line">
+                <div class="block bold">
+                    <p>Name</p>
+                </div>
+                <div class="block bold">
+                    <p>Score</p>
+                </div>
+            </div>
+            <div class="horizontal-line"></div>
+            <div class="list-players" id="list_players">
+            <!-- Target this div for adding players -->
+            <!-- use the html below for jquery -->
+            <!-- <div class="line">
+                    <div class="block">
+                        <p>Javier</p>
+                    </div>
+                    <div class="block">
+                        <p>20 pts.</p>
+                    </div>
+                </div> -->
+                <div class="line">
+                    <div class="block">
+                        <p>Javier</p>
+                    </div>
+                    <div class="block">
+                        <p>20 pts.</p>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="block">
+                        <p>Silver Jew</p>
+                    </div>
+                    <div class="block">
+                        <p>5 pts.</p>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="block">
+                        <p>pb1337</p>
+                    </div>
+                    <div class="block">
+                            <p>20 pts.</p>
+                        </div>
+                </div>
+                <div class="line">
+                    <div class="block">
+                        <p>ThyDev</p>
+                    </div>
+                    <div class="block">
+                        <p>20 pts.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="horizontal-line"></div>
+        </div>
+        <div class="user_input float">
+            <form action="/userResponse" method="post">
+                <div class="line">
+                    <input type="text" name="answerbox" id="answerbox">
+                    <button type="submit" class="send-btn">Send!</button>
+                </div>
+            </form>
+        </div>
+        <div class="question float slide-in">
+            <h3>Predict the output of the following question:</h3>
+            <hr>
+            <div class="question-function" id="quiestion_function">
+                <p class="zero">function yoMamma(num) {</p>
+                <p class="twenty-five">for(let i = 0; i < num; i++) {</p>
+                <p class="fifty">console.log(i);</p>
+                <p class="twenty-five">}</p>
+                <p class="zero">}</p>
+                <p class="center_function">yoMamma(8)</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

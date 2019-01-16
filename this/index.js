@@ -1,12 +1,21 @@
+/*
+ * THIS references the OBJECT that is executing the current function
+ *
+ * If a function is part of an object - called a method
+ * so if a function is a method -> this references the object
+ *
+ * if function is not part of an object -> references window/global
+ *
+*/
 const video = {
   title: 'a',
   play() {
-    console.log(this);
+    console.log(this); // object
   }
 }
 
 video.stop = function() {
-  console.log(this);
+  console.log(this); // object
 }
 
 video.stop()
@@ -14,7 +23,7 @@ video.stop()
 console.log('\n\n===================================\n\n')
 
 function playVideo() {
-  console.log(this);
+  console.log(this); // global
 }
 
 playVideo();
@@ -24,7 +33,10 @@ function Video(title) {
   this.title = title;
   console.log(this);
 }
-console.log('\n\n===================================\n\n')
+console.log('\n\n===================================\n')
+
+Video('bob');
+console.log('\n--------------------------------\n')
 const v = new Video('a');
 
 
