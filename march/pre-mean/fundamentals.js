@@ -12,6 +12,15 @@ function fundamentals() {
   this.bracesValid = function(str) {
    return validateBraces(str);
   };
+  this.returnChange = function(coin) {
+    return coinChange(coin);
+  };
+  this.userInfo = function(users) {
+    return userLanguages(users);
+  };
+  this.search = function(val, arr) {
+    return binarySearch(val, arr);
+  }
 
 }
 
@@ -89,24 +98,116 @@ function validateBraces(str) {
 }
 
 function coinChange(total) {
+  console.log(total);
+  let dollars = Math.floor(total/100);
+  total = total % 100;
+  let dimes = Math.floor(total/10);
+  total = total % 10;
+  let nickels = Math.floor(total/5);
+  total = total % 5;
+  let pennies = total;
 
   return {
-    dollars: '',
-    dimes: '',
-    nickels: '',
-    pennies: ''
+    dollars: dollars,
+    dimes: dimes,
+    nickels: nickels,
+    pennies: pennies
   }
 }
 
+function userLanguages(users) {
+  users.forEach(ele => {
+    let languages = '';
+    let interests = '';
+    ele.languages.forEach((lang, i) => {
+      if (i === ele.languages.length-1) { 
+        languages += 'and ' + lang; 
+      } else { 
+        languages += lang + ', '; 
+      };
+    });
+    for (let key in ele.interests) {
+      ele.interests[key].forEach((interest, i) => {
+          interests += interest + ',';
+      });
+    };
+    let edit = interests.split(",");
+    interests = '';
+    edit.forEach((item, index) => {
+      if(index === edit.length-1) {
+        return;
+      };
+      if(index === edit.length-2) {
+        interests += 'and ' + item;
+      } else {
+        interests += item + ', ';
+      };
+    });
+    console.log(`${ele.fname} ${ele.lname} knows ${languages}.`)
+    console.log(`${ele.fname} ${ele.lname} is also interested in ${interests}.`)
+  });
+};
+
+users = [
+  {
+    fname: "Kermit",
+    lname: "the Frog",
+    languages: ["Python", "JavaScript", "C#", "HTML", "CSS", "SQL"],
+    interests: {
+      music: ["guitar", "flute"],
+      dance: ["tap", "salsa"],
+      television: ["Black Mirror", "Stranger Things"] 
+    }
+  },
+  {
+    fname: "Winnie",
+    lname: "the Pooh",
+    languages: ["Python", "Swift", "Java"],
+    interests: {
+      food: ["honey", "honeycomb"],
+      flowers: ["honesuckle"],
+      mysteries: ["Heffalumps"]
+    }
+  },
+  {
+    fname: "Arthur",
+    lname: "Dent",
+    languages: ["JavaScript", "HTML", "Go"],
+    interests: {
+      space: ["stars", "planets", "improbability"],
+      home: ["tea", "yellow bulldozers"]
+    }
+  },
+];
+
+function binarySearch(val, arr, l=0, r=arr.length-1) {
+  const mid = Math.floor(r-l);
+  if (r < l) return false;
+  if (arr[mid] === val) return true;
+  if (arr[mid] < val) {
+    return binarySearch(val, arr, l=mid+1, r);
+  }
+  return binarySearch(val, arr, l, r=mid-1);
+}
+
+
+// solutions
 const f = new fundamentals();
-let a = f.minMaxAvg([1, -2, 9, 4]);
+const a = f.minMaxAvg([1, -2, 9, 4]);
 console.log(a);
 console.log('\n -------- \n')
-let b = f.fizzbuzz(20);
+const b = f.fizzbuzz(20);
 console.log(b);
 console.log('\n -------- \n')
-let c = f.bracesValid("[balls]({are bouncy?})");
+const c = f.bracesValid("[balls]({are bouncy?})");
 console.log('\n -------- \n')
-
-
+const d = f.returnChange(312);
+console.log(d);
+console.log('\n -------- \n')
+const e = f.userInfo(users);
+console.log('\n -------- \n')
+const ea = f.search(93, [1, 3, 8, 10, 12, 15, 17, 20, 22, 34, 38, 40, 50, 52, 78, 87, 90, 91, 92, 94, 200]);
+const eb = f.search(15, [1, 3, 8, 10, 12, 15, 17, 20, 22, 34, 38, 40, 50, 52, 78, 87, 90, 91, 92, 94]);
+console.log(ea);
+console.log(eb);
 
