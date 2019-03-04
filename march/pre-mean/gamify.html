@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gamify</title>
+</head>
+<body>
+  <div id="house">House</div> 
+  <script>
+    let tigger = { character: "Tigger" };
+    let pooh = { characer : "Winnie the Pooh" };
+    let bees = { character: "Bees" };
+    let piglet = { character: "Piglet" };
+    let cr = { character: "Christopher Robin" };
+    let rabbit = { character: "Rabbit" };
+    let owl = { character: "Owl" };
+    let gopher = { character: "Gohper" };
+    let kanga = { character: "Kanga" };
+    let eeyore = { character: "Eeyore" };
+    let heffalumps = { character: "Heffalumps" };
+
+    function addLocations(obj, north, east, south, west) {
+      obj.north = north;
+      obj.east = east;
+      obj.south = south;
+      obj.west = west;
+    }
+
+    addLocations(heffalumps, null, null, null, eeyore);
+    addLocations(eeyore, null, heffalumps, kanga, null);
+    addLocations(kanga, eeyore, null, cr, null);
+    addLocations(cr, kanga, rabbit, pooh, owl);
+    addLocations(owl, null, cr, piglet, null);
+    addLocations(piglet, owl, pooh, null, null);
+    addLocations(pooh, cr, bees, tigger, piglet);
+    addLocations(tigger, pooh, null, null, null);
+    addLocations(bees, rabbit, null, null, pooh);
+    addLocations(rabbit, null, gopher, bees, cr);
+    addLocations(gopher, null, null, null, rabbit);
+
+
+    function Player(obj) {
+      this.name = 'Bob';
+      this.location = obj;
+      this.move = function(dir) {
+        if (!this.location[dir]) {
+          return console.log('Nobody lives to the ' + dir);
+        }
+        this.location = this.location[dir];
+        this.whereAmI();
+      }
+      this.whereAmI = function() {
+        let root = document.getElementById('house');
+        house.innerHTML = this.location.character;
+        console.log("You are at " + this.location.character + "'s house.");
+      }
+    }
+
+    let bob = new Player(heffalumps);
+    bob.whereAmI();
+
+    window.onkeyup = function(e) {
+      if(e.keyCode === 72) {
+        return bob.move('west');
+      }
+      if(e.keyCode === 74) {
+        return bob.move('south');
+      }
+      if(e.keyCode === 75) {
+        return bob.move('north');
+      }
+      if(e.keyCode === 76) {
+        return bob.move('east');
+      }
+    }
+
+  </script>
+</body>
+</html>
