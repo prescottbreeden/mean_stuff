@@ -1,0 +1,6 @@
+<app-header></app-header>
+<h1 class="jumbotron">{{superman.power}}</h1>
+<div *ngFor="let hero of heroes">
+  <h4>{{ hero.name }}</h4>
+  <h4>{{ hero.power }}</h4>
+</div>

@@ -15,21 +15,18 @@ module.exports = {
       .catch(err => {
         generateErrors(req, err, 'newMessage');
         res.redirect('/');
-      })
-      .catch(err => next(err));
+      });
   },
 
   newComment: (req, res) => {
     const data = req.body;
-    Message.updateOne({ _id: data._id }, {
-      $push: {
-        comments: {
-          postedBy: data.postedBy, 
-          content: data.content
-        }
-      }, 
-    }, {runValidators: true})
-      .then(result => res.redirect('/'))
+    Comment.create({ postedBy: data.postedBy, content: data.content })
+      .then(newComment => {
+        return Message.findOneAndUpdate({_id: data._id}, 
+          {$push: {comments: newComment}}, 
+          {runValidators: true})
+      })
+      .then(() => res.redirect('/'))
       .catch(err => {
         generateErrors(req, err, 'newComment');
         res.redirect('/');
@@ -37,7 +34,7 @@ module.exports = {
   },
 
   error: (req, res) => {
-    res.json('im a little teapot');
+    res.json('im a little teapot... and you broke me');
   }
 }
 

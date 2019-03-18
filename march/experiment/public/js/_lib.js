@@ -1,6 +1,6 @@
 function buildDom() {
   const root = document.getElementById('root');
-  root.appendChild(createForm('/message', 'POST'));
+  root.appendChild(createForm('/api/message', 'POST'));
   root.appendChild(createText('Bugs Bunny'));
   root.appendChild(createText('Rubber Baby Buggy Bumpers'));
 }
@@ -52,4 +52,10 @@ function createText(content, className = null, eleId = null) {
   if (className) ele.className = className;
   if (eleId) ele.id = eleId;
   return ele;
+}
+
+function postRequest(route) {
+  return $.post(route, (response) => {
+    console.log('Received ' + response);
+  });
 }

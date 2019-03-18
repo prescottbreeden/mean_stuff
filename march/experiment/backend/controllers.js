@@ -6,10 +6,12 @@ module.exports = {
     res.sendFile('./index.html');
   },
 
-  all: (req, res, next) => {
-    Message.find()
-      .then(results => res.json('index', { data: results }))
-      .catch(err => next(err));
+  getAll: (req, res, next) => {
+    console.log('received request');
+    res.json('response');
+    // Message.find()
+    //   .then(results => res.json('index', { data: results }))
+    //   .catch(err => next(err));
   },
 
   newMessage: (req, res, next) => {
