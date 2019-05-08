@@ -1,0 +1,11 @@
+<form (submit)="followMeOnMySpace()">
+    <div *ngIf="errors.name">
+      {{ errors.name.message }} 
+    </div>
+    <input type="text" name="hero.name" [(ngModel)]="hero.name" />
+    <div *ngIf="errors.power">
+      {{ errors.power.message }} 
+    </div>
+    <input type="text" name="hero.power" [(ngModel)]="hero.power" />
+    <button>Add Hewo</button>
+</form>

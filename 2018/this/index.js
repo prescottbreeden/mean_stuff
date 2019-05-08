@@ -7,32 +7,32 @@
  * if function is not part of an object -> references window/global
  *
 */
-// const video = {
-//   title: 'a',
-//   play() {
-//     console.log(this); // object
-//   }
-// }
+const video = {
+  title: 'a',
+  play() {
+    console.log(this); // object
+  }
+}
 
-// video.stop = function() {
-//   console.log(this); // object
-// }
+video.stop = function() {
+  console.log(this); // object
+}
 
 // video.stop()
 
 // console.log('\n\n===================================\n\n')
 
-// function playVideo() {
-//   console.log(this); // global
-// }
+function playVideo() {
+  console.log(this); // global
+}
 
 // playVideo();
 
 
-// function Video(title) {
-//   this.title = title;
-//   console.log(this);
-// }
+function Video(title) {
+  this.title = title;
+  console.log(this);
+}
 // console.log('\n\n===================================\n')
 
 // Video('bob');
@@ -42,73 +42,67 @@
 
 // console.log('\n\n===================================\n\n')
 
-// const video2 = {
-//   title: 'a',
-//   tags: ['a', 'b', 'c'],
-//   showTags() {
-//     this.tags.forEach(function(tag) {
-//       console.log(tag);
-//       // console.log(this);
-//     });
-//   },
-//   showTags2() {
-//     this.tags.forEach(tag => {
-//       console.log(this);
-//     })
-//   }
-// };
+const video2 = {
+  title: 'a',
+  tags: ['a', 'b', 'c'],
+  showTags() {
+    this.tags.forEach(function(tag) {
+      console.log(tag);
+      console.log(this);
+    });
+  },
+  showTags2() {
+    this.tags.forEach(tag => {
+      console.log(this);
+    })
+  }
+};
 
 // video2.showTags();
 // video2.showTags2();
 
-console.log('\n\n===================================\n\n')
+// console.log('\n\n===================================\n\n')
 
-const cat = {
-  name: 'Mittens',
-  meow: function() {
-    console.log('meow');
-    console.log(this)
-  }
-}
+// const cat = {
+//   name: 'Mittens',
+//   meow: function() {
+//     console.log('meow');
+//     console.log(this)
+//   }
+// }
 
-cat.meow();
+// cat.meow();
 
-console.log('\n\n===================================\n\n')
+// console.log('\n\n===================================\n\n')
 
-function meow() {
-  var sound = 'purr';
-  this.name = 'Mittens'
-  // console.log(this)
-  this.noise = function() {
-    return sound;
-  }
-}
+// function meow() {
+//   var sound = 'purr';
+//   this.name = 'Mittens'
+//   // console.log(this)
+//   this.noise = function() {
+//     return sound;
+//   }
+// }
 
-let kitteh = new meow();
-console.log(kitteh.sound);
-console.log(kitteh.noise());
+// let kitteh = new meow();
+// console.log(kitteh.sound);
+// console.log(kitteh.noise());
 
 
-class Person {
-  constructor(name) {
+// console.log('\n\n===================================\n\n')
 
-  }
-}
+// let someFunc = (name) => {
+//   this.name = name;
+//   console.log('this in someFunc', this);
+//   console.log('someFunc prototype', this.__proto__)
+//   console.log('someFunc inherited from', this.__proto__.__proto__)
+// }
 
-console.log('\n\n===================================\n\n')
+// // someFunc('bob');
 
-let someFunc = (name) => {
-  this.name = name;
-  console.log('this in someFunc', this);
-  console.log('someFunc prototype', this.__proto__)
-  console.log('someFunc inherited from', this.__proto__.__proto__)
-}
-
-// someFunc('bob');
-
-Object.prototype.meow = function() {
-  console.log('meow...');
-}
+// Object.prototype.meow = function() {
+//   console.log('meow...');
+// }
 
 // let arr = [];
 // arr.meow();

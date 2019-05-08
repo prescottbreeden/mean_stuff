@@ -1,0 +1,8 @@
+<div *ngFor="let hero of heroes" class="hero">
+  <div class="hero__item">
+    {{ hero.name }} 
+    <button [routerLink]="['/view', hero._id]" class="nav__link">View</button>
+    <button [routerLink]="['/edit', hero._id]" class="nav__link">Edit</button>
+    <button (click)="deleteMe(hero._id)" class="nav__link">Delete</button>
+  </div> 
+</div>

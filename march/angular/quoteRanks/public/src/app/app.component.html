@@ -1,0 +1,11 @@
+<form (submit)="makeHero()">
+  <p> {{ superHero | json }} </p>
+  <input type="text" name="superHero.name" [(ngModel)]="superHero.name" />
+  <input type="text" name="superHero.power" [(ngModel)]="superHero.power" />
+  <button>Submit</button>
+</form>
+
+<div *ngFor="let hero of heros">
+  <hr>
+  {{ hero.name }} || {{ hero.power }} 
+</div>
